@@ -1,0 +1,34 @@
+class Solution {
+    
+    public String[] reorderLogFiles(String[] logs) {
+        if(logs.length <=0) return logs;
+        List<String> letterL = new ArrayList<>();
+        List<String> digL = new ArrayList<>();
+        for (String str : logs) {
+            String[] sList = str.split(" ");
+            if(Character.isDigit(sList[1].charAt(0))) {
+                digL.add(str);
+            } else {
+                letterL.add(str);
+            }
+        }
+        Collections.sort(letterL, (a, b) -> {
+            String s1 = a.substring(a.indexOf(" ") + 1);
+            String s2 = b.substring(b.indexOf(" ") + 1);
+            return s1.equals(s2) ? a.compareTo(b) : s1.compareTo(s2);
+        });
+                
+        String str[] = new String[logs.length];
+        int k = 0;
+        for (String letter : letterL) {
+            str[k] = letter;
+            k++;
+        }
+        for (String digit : digL) {
+            str[k] = digit;
+            k++;
+        }
+        return str;
+    }
+
+}

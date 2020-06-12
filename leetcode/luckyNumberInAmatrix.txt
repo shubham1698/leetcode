@@ -1,0 +1,40 @@
+class Solution {
+    public List<Integer> luckyNumbers (int[][] matrix) {
+        int ans=0;
+        
+        List <Integer> arr=new ArrayList<>();
+        for(int i=0;i<matrix.length;i++)
+        {
+             for(int j=0;j<matrix[0].length;j++)
+             {
+                 ans=check(matrix[i][j],matrix,i,j);
+                 if(ans==1)
+                 {
+                     arr.add(matrix[i][j]);
+                 }
+             }
+        }
+        return arr;
+    }
+    
+    int check(int val,int matrix[][],int i,int j)
+    {
+        int min1=val;
+        int min2=val;
+        for(int col=0;col<matrix[0].length;col++)
+        {
+            if(min1>matrix[i][col])
+                min1=matrix[i][col];
+        }
+        
+        for(int row=0;row<matrix.length;row++)
+        {
+            if(min2<matrix[row][j])
+                min2=matrix[row][j];
+        }
+        if(min1==min2)
+            return 1;
+        else 
+            return 0;
+    }
+}

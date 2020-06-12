@@ -1,0 +1,55 @@
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        String prefix="";
+        if(strs==null || strs.length==0)
+            return prefix;
+        int j=-1;
+       // String prefix="";
+        char ch=' ';
+        int index=smallest(strs);
+        String small=strs[index];
+        int count=0;
+        for(j=0;j<small.length();j++)
+        {  
+             for(int i = 0 ; i < strs.length ; i++)
+             {
+               ch=small.charAt(j);
+               if(ch ==strs[i].charAt(j))
+               {
+                   continue;
+               }
+               else{
+                   count=1;
+                   break;
+               }    
+            }
+            if (count==0)
+           {
+               
+                prefix=prefix+ch; continue;
+            }
+            else
+            {
+                break;
+            }
+           
+        }
+        return prefix;//small.substring(0,count++);
+    }
+    
+
+    public int smallest(String SA[]) {
+        int first = SA[0].length();
+        int i;
+        int index=0;
+        
+        for ( i = 1 ; i < SA.length ; i++) {
+            if (SA[i].length()<first) {
+                first =SA[i].length();
+                index=i;
+            }
+        } 
+        return index;
+    }
+}
+   
